@@ -1,0 +1,85 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dynamicFvMesh   dynamicMultiMotionSolverFvMesh;
+
+dynamicMultiMotionSolverFvMeshCoeffs
+{
+    prop1
+    {
+        solver solidBody;
+        cellZone rotating1;
+        solidBodyCoeffs
+        {
+            solidBodyMotionFunction rotatingMotion;
+            rotatingMotionCoeffs
+            {
+            origin      (0.075 0.05 0.012);  // Center of rotation for propeller 1
+            axis        (0 0 -1);              // Axis of rotation
+            omega       158;                   // Angular velocity in rad/s
+            }
+        }
+    }
+    prop2
+    {
+        solver solidBody;
+        cellZone rotating2;
+        solidBodyCoeffs
+        {
+            solidBodyMotionFunction rotatingMotion;
+            rotatingMotionCoeffs
+            {
+            origin      (-0.075 0.05 0.012);  // Center of rotation for propeller 1
+            axis        (0 0 1);              // Axis of rotation
+            omega       158;                   // Angular velocity in rad/s
+            }
+        }
+    }
+    prop3
+    {
+        solver solidBody;
+        cellZone rotating3;
+        solidBodyCoeffs
+        {
+            solidBodyMotionFunction rotatingMotion;
+            rotatingMotionCoeffs
+            {
+            origin      (-0.075 -0.05 0.012);  // Center of rotation for propeller 1
+            axis        (0 0 -1);              // Axis of rotation
+            omega       158;                   // Angular velocity in rad/s
+            }
+        }
+    }
+    prop4
+    {
+        solver solidBody;
+        cellZone rotating4;
+        solidBodyCoeffs
+        {
+            solidBodyMotionFunction rotatingMotion;
+            rotatingMotionCoeffs
+            {
+            origin      (0.075 -0.05 0.012);  // Center of rotation for propeller 1
+            axis        (0 0 1);              // Axis of rotation
+            omega       158;                   // Angular velocity in rad/s
+            }
+        }
+    }
+}
+
+// ************************************************************************* //
+// ***************************** tensor-VTOL-2024 ************************** //
+// ******************************** tensor.com ***************************** //

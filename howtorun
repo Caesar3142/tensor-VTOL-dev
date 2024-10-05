@@ -1,0 +1,11 @@
+blockMesh
+surfaceFeatureExtract
+snappyHexMesh -overwrite
+topoSet -dict system/createInletOutletSets.topoSetDict
+createPatch -overwrite
+decomposePar
+mpirun -np 12 pimpleFoam -parallel
+reconstructPar
+
+// ***************************** tensor-VTOL-2024 ************************** //
+// ******************************** tensor.com ***************************** //

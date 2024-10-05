@@ -1,0 +1,48 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      createPatchDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+pointSync false;
+
+// Patches to create.
+patches
+(
+    { name AMI1a; patchInfo { type cyclicAMI; matchTolerance  0.0001; neighbourPatch  AMI1b; transform  noOrdering;}
+    constructFrom patches; patches (rotating1);}
+    { name AMI1b; patchInfo {type cyclicAMI; matchTolerance  0.0001; neighbourPatch  AMI1a; transform  noOrdering;}
+    constructFrom patches; patches (rotating1_slave);}
+
+    { name AMI2a; patchInfo { type cyclicAMI; matchTolerance  0.0001; neighbourPatch  AMI2b; transform  noOrdering;}
+    constructFrom patches; patches (rotating2);}
+    { name AMI2b; patchInfo {type cyclicAMI; matchTolerance  0.0001; neighbourPatch  AMI2a; transform  noOrdering;}
+    constructFrom patches; patches (rotating2_slave);}
+
+    { name AMI3a; patchInfo { type cyclicAMI; matchTolerance  0.0001; neighbourPatch  AMI3b; transform  noOrdering;}
+    constructFrom patches; patches (rotating3);}
+    { name AMI3b; patchInfo {type cyclicAMI; matchTolerance  0.0001; neighbourPatch  AMI3a; transform  noOrdering;}
+    constructFrom patches; patches (rotating3_slave);}
+
+    { name AMI4a; patchInfo { type cyclicAMI; matchTolerance  0.0001; neighbourPatch  AMI4b; transform  noOrdering;}
+    constructFrom patches; patches (rotating4);}
+    { name AMI4b; patchInfo {type cyclicAMI; matchTolerance  0.0001; neighbourPatch  AMI4a; transform  noOrdering;}
+    constructFrom patches; patches (rotating4_slave);}
+
+    { name enclosure; patchInfo { type patch;} constructFrom set; set enclosure;}
+);
+
+
+// ************************************************************************* //
+// ***************************** tensor-VTOL-2024 ************************** //
+// ******************************** tensor.com ***************************** //
